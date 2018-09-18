@@ -7,9 +7,13 @@ function Route(client) {
     client.on('join', function(data) {
         client.leaveAll()
         client.join(data.name)
+        client.nowRoom = data.name
     })
     client.on('upload', function(data) {
-        client.to(client.rooms[0]).broadcast.emit(data)
+        if (client.nowRoom)
+            return client.to(client.nowRoom).broadcast.emit('upload', data) 
+       else
+            return client.emit('errors', "Room Not Connect")
     })
 }
 
