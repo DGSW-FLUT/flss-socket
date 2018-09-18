@@ -1,0 +1,24 @@
+{
+  "name": "flss-socket",
+  "version": "1.0.0",
+  "description": "flss socket server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DGSW-FLUT/flss-socket.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DGSW-FLUT/flss-socket/issues"
+  },
+  "homepage": "https://github.com/DGSW-FLUT/flss-socket#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "socket.io": "^2.1.1"
+  }
+}
