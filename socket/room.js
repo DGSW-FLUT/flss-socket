@@ -21,7 +21,8 @@ const Interactionitems = sequelize.define('InteractionItems', {
     Topic: {type: Sequelize.TEXT, allowNull: true, defaultValue: null},
     Content: {type: Sequelize.TEXT, allowNull: true, defaultValue: null},
     file: {type: Sequelize.TEXT, allowNull: true, defaultValue: null},
-    Link: {type: Sequelize.TEXT, allowNull: true ,defaultValue: null} 
+    Link: {type: Sequelize.TEXT, allowNull: true ,defaultValue: null},
+    Name: {type: Sequelize.STRING(50), allowNull: true, defaultValue: null}
     }, {
         timestamps: false
     }
@@ -57,9 +58,10 @@ function Route(client) {
         {
             console.log(data)
             // interActions[client.nowRoom].push(data)
-            Interactionitems.create({Aid: client.nowRoom, file: data.file, Topic: data.Topic, Content: data.Content, Link: data.Link})
+            Interactionitems.create({Aid: client.nowRoom, file: data.file, Topic: data.Topic, Content: data.Content, Link: data.Link, Name: data.Name})
                 .then((value) => {
-                    return client.to(client.nowRoom).broadcast.emit('upload', data)
+                    client.emit('meupload', value)
+                    return client.to(client.nowRoom).emit('upload', value.dataValues)
                 })
                 .catch((err) => {
                     console.error(err)
